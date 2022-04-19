@@ -1,15 +1,17 @@
+import uuid
+
 
 class Database:
     # Asume that the database is a dictionary, all dates are already on UTC timezone
     data = {
         "workouts": [
-            {"athlete_id": 1, "coach_id": 10, "name": "wk_1",
+            {"id": "83ffdd9a78ef4d7baa45e67e8845ece6", "athlete_id": 1, "coach_id": 10, "name": "wk_1",
              "start_date_time": "2022-04-19 07:00:00", "end_date_time": "2022-04-19 09:00:00"},
             
-            {"athlete_id": 1, "coach_id": 10, "name": "wk_2",
+            {"id": "f0176fce57504ebdbe4a17e03fe9ee9a", "athlete_id": 1, "coach_id": 10, "name": "wk_2",
              "start_date_time": "2022-04-19 10:00:00", "end_date_time": "2022-04-19 12:00:00"},
             
-            {"athlete_id": 1, "coach_id": 10, "name": "wk_3",
+            {"id": "85dac93ec4964e4abf17eb2368413727", "athlete_id": 1, "coach_id": 10, "name": "wk_3",
              "start_date_time": "2022-04-19 16:00:00", "end_date_time": "2022-04-19 18:00:00"}
         ],
         "coaches": {
@@ -124,5 +126,13 @@ class Database:
     def get_athlete_unavailable_periods(self, athlete_id: int, day_mame: str):
         return self.data["athletes"][athlete_id]["unavailable_periods"].get(day_mame, [])
 
+    def get_coach_by_id(self, coach_id: int):
+        return self.data["coaches"].get(coach_id)
+
+    def get_athlete_by_id(self, athlete_id: int):
+        return self.data["athletes"].get(athlete_id)
+
     def insert_workout(self, workout: dict):
+        workout.update({"id": uuid.uuid4().hex})
         self.data["workouts"].append(workout)
+        return workout
