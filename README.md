@@ -1,6 +1,6 @@
-#Stryd Backend test
+# Stryd Backend test
 
-##How to run 
+## How to run 
 Install dependencies
 ```bash
 pip install -r requirements.txt
@@ -15,6 +15,6 @@ Running tests
 pytest test.py
 ```
 
-Sample schedule
+## Sample schedule
 Schedule bellow is loaded on the sample "database" and used for testing
 ![Alt text](images/sample_schedule.png?raw=true "Sample schedule")
